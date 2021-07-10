@@ -1,5 +1,44 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1>Post-training</h1>
+
+<div class="card align-center mt-5 p-4">
+    <script> var dic = '{{dic}}';</script>
+    <form method="POST">
+
+
+        {% for key,value in category.items() %}
+            
+            <div class="mb-3">
+                <label for="{{key}}" class="form-label  px-1">{{key}}</label>
+                <select name="{{key}}" class="form-select" aria-label="Default select example">
+
+                {% for inner_key,inner_value in value.items() %}
+                    <option value="{{inner_value}}">{{inner_key}}</option>
+                {% endfor %}
+                    
+                    
+                </select>
+            
+            </div>
+                
+        {% endfor %}
+
+        <!-- <div class="mb-3">
+            <label for="Gender" class="form-label  px-1">Gender</label>
+            <select id="Gender" name="Gender" class="form-select" aria-label="Default select example"></select>
+        </div> -->
+
+
+
+
+
+
+
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <script src="../static/js/postTrainingSelect.js"></script>
+</div>
 {% endblock content %}
