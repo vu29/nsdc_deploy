@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layout_wide.html' %}
 
 {% block content %}
 
@@ -11,48 +11,34 @@
                 <thead>
                     <tr class="table-dark">
                         <td>TC Name</td>
-                        <td>Sector Name</td>
                         <td>Partner Name</td>
+                        <td>Sector Name</td>
                         <td>Job Role</td>
                         <td>Placed</td>
                     </tr>
                 </thead>
-                <tr class="table-danger">
-                    <td>Random TC Name</td>
-                    <td>Random Sector Name</td>
-                    <td>Random Partner Name</td>
-                    <td>Random Job Role</td>
-                    <td>No</td>
-                </tr>
-                <tr class="table-danger">
-                    <td>Random TC Name</td>
-                    <td>Random2 Sector Name</td>
-                    <td>Random2 Partner Name</td>
-                    <td>Random2 Job Role</td>
-                    <td>No</td>
-                </tr>
-                <tr class="table-danger">
-                    <td>Random TC Name</td>
-                    <td>Random3 Sector Name</td>
-                    <td>Random3 Partner Name</td>
-                    <td>Random3 Job Role</td>
-                    <td>No</td>
-                </tr>
-                <tr class="table-success">
-                    <td>Random TC Name</td>
-                    <td>Random4 Sector Name</td>
-                    <td>Random4 Partner Name</td>
-                    <td>Random4 Job Role</td>
-                    <td>Yes</td>
-                </tr>
+
+                {% for entry in data %}
+
+                {% if entry["Result"] == 1 %}
+                    <tr class="table-success">
+                    {% else %}
+                    <tr class="table-danger">
+                    {% endif %}
+
                 
-                <tr class="table-light">
-                    <td>Random TC Name</td>
-                    <td>Random4 Sector Name</td>
-                    <td>Random4 Partner Name</td>
-                    <td>Random4 Job Role</td>
-                    <td class="table-success">Yes</td>
-                </tr>
+                    <td>{{ entry["TC Name"] }}</td>
+                    <td>{{ entry["PartnerName"] }}</td>
+                    <td>{{ entry["SectorName"] }}</td>
+                    <td>{{ entry["JobRole"] }}</td>
+                    {% if entry["Result"] == 1 %}
+                        <td>Yes</td>
+                    {% else %}
+                        <td>No</td>
+                    {% endif %}
+                </tr>    
+                {% endfor %}
+
             </table>
         </div>
 

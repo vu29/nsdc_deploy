@@ -21,14 +21,15 @@
                     </select>
                 </div>
             {% endfor %}
+                <div class="my-3">
+                    <div class=" mb-3">
+                        <label for="TotalCandidatesinBatch" class="form-label  px-1">Total Candidates in Batch</label>
+                        <input required type="number" name="TotalCandidatesinBatch" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+                
 
             <button type="submit" class="btn mt-4 w-100 btn-primary">Submit</button>
         </form>
-        <!-- <script>
-            function loading(){
-                document.getElementById('content').hide()
-                document.getElementById('loading').show()
-            }
-        </script> -->
     </div>
 {% endblock content %}
