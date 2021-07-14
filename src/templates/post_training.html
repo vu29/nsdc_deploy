@@ -2,43 +2,28 @@
 
 {% block content %}
 
-<div class="card align-center mt-5 p-4">
-    <script> var dic = '{{dic}}';</script>
-    <form method="POST">
+    <div class="card align-center mt-5 p-4">
+        <div class="card-title">
+           <h2 class="text-primary">{{title}}</h2> 
+        </div>
+        <form class="mt-2" method="POST">
 
+            {% for key,value in category.items() %}
 
-        {% for key,value in category.items() %}
-            
-            <div class="mb-3">
-                <label for="{{key}}" class="form-label  px-1">{{key}}</label>
-                <select name="{{key}}" class="form-select" aria-label="Default select example">
+                <div class="my-3">
+                    <label for="{{key}}" class="form-label  px-1">{{key}}</label>
+                    <select name="{{key}}" class="form-select" aria-label="Default select example">
 
-                {% for inner_key,inner_value in value.items() %}
-                    <option value="{{inner_value}}">{{inner_key}}</option>
-                {% endfor %}
-                    
-                    
-                </select>
-            
-            </div>
-                
-        {% endfor %}
+                        {% for inner_key,inner_value in value.items() %}
+                            <option value="{{inner_value}}">{{inner_key}}</option>
+                        {% endfor %}
 
-        <!-- <div class="mb-3">
-            <label for="Gender" class="form-label  px-1">Gender</label>
-            <select id="Gender" name="Gender" class="form-select" aria-label="Default select example"></select>
-        </div> -->
+                    </select>
+                </div>
+            {% endfor %}
 
+            <button type="submit" class="btn mt-4 w-100 btn-primary">Submit</button>
+        </form>
 
-
-
-
-
-
-
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <script src="../static/js/postTrainingSelect.js"></script>
-</div>
+    </div>
 {% endblock content %}

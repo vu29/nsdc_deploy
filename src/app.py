@@ -1,58 +1,36 @@
-from flask import Flask,render_template,request
 import json
+import requests
+from flask import Flask, render_template, request
+
+
 
 app = Flask(__name__)
 
+# select values
+pre_train_select = json.load(open('./static/json/pre_training_select_val.json','r'))
+post_train_select = json.load(open('./static/json/post_training_select_val.json','r'))
 
-# -- routes --
 
+# Routes
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', title = "Home")
 
-@app.route('/pre_training', methods = ['GET','POST'] )
+
+@app.route('/pre_training', methods=['GET', 'POST'])
 def pre_training():
     if request.method == 'POST':
-        return request.form
-        return render_template('pre_training.html')
+        return render_template('result.html',title = 'Result')
 
-    return render_template('pre_training.html')
+    return render_template('pre_training.html',title="Pre-Training", category=pre_train_select)
 
-@app.route('/post_training', methods = ['GET','POST'] )
+
+@app.route('/post_training', methods=['GET', 'POST'])
 def post_training():
     if request.method == 'POST':
         return request.form
-        return render_template('post_training.html')
 
-    dic = {
-    "Gender" : {
-        "Male" : 1,
-        "Female" : 2
-    },
-    "Type of Disability": {"None": 1,
-        "Deaf": 2,
-        "Locomotor Disability": 3,
-        "Low-vision": 4,
-        "Blindness (Visually Impaired)": 6,
-        "Leprosy Cured Person": 7,
-        "Hard of Hearing": 8,
-        "Speech and Language Disability (Speech Impaired)": 9,
-        "Mental Behavior- Mental Illness, Mental Retardation": 10,
-        "Cerebral Palsy": 11,
-        "Muscular Dystrophy": 12,
-        "Dwarfism": 13
-    },
-    "castecategory": {"Gen": 1,
-    "SC": 2,
-    "OBC": 3,
-    "ST": 4
-    }
-}
-
-    
-
-
-    return render_template('post_training.html',category = dic)
+    return render_template('post_training.html', title="Post-Training" ,category=post_train_select)
 
 
 if __name__ == "__main__":
