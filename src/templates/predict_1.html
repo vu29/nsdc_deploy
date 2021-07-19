@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="card align-center mt-5 p-4">
+        <div class="card-title">
+           <h2 class="text-primary">{{title}}</h2> 
+        </div>
+        <form class="mt-2" action="/predict/tc_name" method="POST">
+
+            {% for key,value in category.items() %}
+
+                <div class="my-3">
+                    <label for="{{key}}" class="form-label  px-1">{{key}}</label>
+                    <select name="{{key}}" class="form-select" aria-label="Default select example">
+
+                        {% for inner_key,inner_value in value.items() %}
+                            <option value="{{inner_value}}">{{inner_key}}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+            {% endfor %}
+
+            <div class="my-3">
+                <div class=" mb-3">
+                    <label for="TotalCandidatesinBatch" class="form-label  px-1">Total Candidates in Batch</label>
+                    <input required type="number" name="TotalCandidatesinBatch" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+            </div>
+
+            <button type="submit" class="btn mt-4 w-100 btn-primary">Next</button>
+        </form>
+
+    </div>
+{% endblock content %}

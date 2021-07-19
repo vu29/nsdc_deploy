@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="card align-center mt-5 p-4">
+        <div class="card-title">
+           <h2 class="text-primary">{{title}}</h2> 
+        </div>
+        <form class="mt-2" action={{next_url}} method="POST">
+
+            {% for key,value in category.items() %}
+
+                <div class="my-3">
+                    <label for="{{key}}" class="form-label  px-1">{{key}}</label>
+                    <select name="{{key}}" class="form-select" aria-label="Default select example">
+
+                        {% for inner_key,inner_value in value.items() %}
+                            <option value="{{inner_value}}">{{inner_key}}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn mt-4 w-100 btn-primary">Next</button>
+        </form>
+
+    </div>
+{% endblock content %}
