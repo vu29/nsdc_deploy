@@ -1,14 +1,16 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <div class="card align-center mt-5" style="height: 15rem;">
-        <div class="card-header text-center">
+    <div class="card align-center mt-5" style="height: 14em;">
+        <div class="card-header text-center" >
             <h2 class="text-dark">Choose a category</h2>
         </div>
-        <div class="ms-auto me-auto p-4 mt-4">
-            <a type="button" class="btn btn-primary btn-lg mx-4 mt-2" href="{{url_for('pre_training')}}" style="width: 15rem;">Pre-Training</a>
-            <a type="button" class="btn btn-primary btn-lg mx-4 mt-2" href="{{url_for('post_training')}}" style="width: 15rem;">Post-Training</a>
+        <div class="ms-auto me-auto p-2 mt-4">
+            <a type="button" class="btn btn-primary btn-lg mx-1 mt-2" href="{{url_for('pre_training')}}" style="width: 15rem;">Pre-Training</a>
+            <a type="button" class="btn btn-primary btn-lg mx-1 mt-2" href="{{url_for('post_training')}}" style="width: 15rem;">Post-Training</a>
+            <a type="button" class="btn btn-primary btn-lg mx-1 mt-2" href="{{url_for('predict_user_info')}}" style="width: 15rem;">Predict</a>
         </div>
+        
 
     </div>
 {% endblock content %}

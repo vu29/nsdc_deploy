@@ -106,6 +106,15 @@ def get_prediction(form_data):
     prediction = model.predict(X).tolist()
     return prediction
 
+def format_data(final_data):
+    nsdc_dict = json.load(open('./models/final_data/dictnsdc.json','r'))
+    new_dict = format_dict(final_data)
+    for col,val in new_dict.items():
+        if col == 'TotalCandidatesinBatch':
+            continue
+        inv_dict= dict(zip(nsdc_dict[col].values(),nsdc_dict[col].keys()))
+        new_dict[col] = inv_dict[val]
+    return new_dict
 
 
 def get_tc(dist):

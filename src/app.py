@@ -3,6 +3,7 @@ import string
 import random
 from flask import Flask, render_template, request
 from flask.globals import session
+from numpy.lib.function_base import place
 from pandas.core.arrays import categorical
 from pandas.core.indexes import category
 from utils import *
@@ -92,7 +93,9 @@ def predict_result():
             final_dict[key] = session[key]
     final_dict.update(request.form)
     print(final_dict)
-    return str(get_prediction(final_dict))
+    result = get_prediction(final_dict)[0]
+    final_dict = format_data(final_dict)
+    return render_template('predict_result.html',table_data = final_dict, placed = result, title = 'Prediction')
 
 if __name__ == "__main__":
     app.run(debug=True)
